@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import data from "./data.json";
 import routes from "./routes.json";
+import stops from "./stops.json";
 
 import MapGL, {
   Viewport,
@@ -81,6 +82,25 @@ function App() {
         />
         <NavigationControl showCompass showZoom position="bottom-right" />
         <Source id="routes" type="geojson" data={data as FeatureCollection} />
+        <Source id="stops" type="geojson" data={stops as FeatureCollection} />
+        <Layer
+          id="stops"
+          source="stops"
+          type="circle"
+          minzoom={13}
+          paint={{
+            "circle-color": "#FF4436",
+            "circle-radius": [
+              "interpolate",
+              ["exponential", 2],
+              ["zoom"],
+              12,
+              1,
+              16,
+              6,
+            ],
+          }}
+        />
         <Layer
           id="route-lines"
           type="line"
