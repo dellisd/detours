@@ -16,6 +16,7 @@
     { "ref": "66", "name": "66 Solandt — Tunney's Pasture / Gatineau" },
     { "ref": "75", "name": "75 Barrhaven — Tunney's Pasture / Gatineau" },
     { "ref": "114", "name": "114 Rideau — Carlington" },
-    { "ref": "c", "name": "Centretown Shuttle" }
+    { "ref": "c", "name": "Centretown Shuttle" },
+    { "ref": "all", "name": "All Routes" }
   ]
 }

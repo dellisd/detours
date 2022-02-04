@@ -75,7 +75,9 @@ function App() {
         <AttributionControl
           compact={false}
           position="bottom-right"
-          customAttribution={`Updated on ${new Date(buildDate).toLocaleDateString()}`}
+          customAttribution={`Updated on ${new Date(
+            buildDate
+          ).toLocaleDateString()}`}
         />
         <NavigationControl showCompass showZoom position="bottom-right" />
         <Source id="routes" type="geojson" data={data as FeatureCollection} />
@@ -83,7 +85,13 @@ function App() {
           id="route-lines"
           type="line"
           source="routes"
-          filter={["all", ["==", ["get", "ref"], selected], ["get", "active"]]}
+          filter={[
+            "all",
+            selected === "all"
+              ? ["literal", true]
+              : ["==", ["get", "ref"], selected],
+            ["get", "active"],
+          ]}
           layout={{
             "line-cap": "round",
           }}
@@ -98,7 +106,9 @@ function App() {
           source="routes"
           filter={[
             "all",
-            ["==", ["get", "ref"], selected],
+            selected === "all"
+              ? ["literal", true]
+              : ["==", ["get", "ref"], selected],
             ["!", ["get", "active"]],
           ]}
           layout={{
