@@ -39,11 +39,13 @@ const Select = styled.select`
 
 const colorExpression = [
   "case",
+  ["in", ["get", "ref"], ["literal", ["1"]]],
+  "#D62937",
   ["in", ["get", "ref"], ["literal", ["5", "9", "16", "18", "19", "66"]]],
   "#404040",
   ["in", ["get", "ref"], ["literal", ["61", "63", "75"]]],
   "#1A559B",
-  ["in", ["get", "ref"], ["literal", ["6", "7", "10", "11", "14", "15"]]],
+  ["in", ["get", "ref"], ["literal", ["6", "7", "10", "11", "14", "15", "85"]]],
   "#F26532",
   "#404040",
 ];
