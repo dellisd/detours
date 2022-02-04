@@ -1,0 +1,32 @@
+name: Publish Site
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  publish-site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14'
+      
+      - name: Set up local secrets
+        env:
+          MAPBOX_KEY: ${{ secrets.MAPBOX_KEY }}
+        run: echo -e "REACT_APP_MAPBOX_KEY=$MAPBOX_KEY" > .env.local
+          
+      - name: Build dist
+        run: yarn && yarn run build
+        
+      - name: Deploy 🚉
+        if: success()
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: build
+          SINGLE_COMMIT: true 
