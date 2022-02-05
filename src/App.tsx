@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import data from "./data.json";
 import routes from "./routes.json";
@@ -15,6 +15,8 @@ import { useWindow } from "./useWindow";
 import { FeatureCollection } from "geojson";
 import "mapbox-gl/dist/mapbox-gl.css";
 import preval from "preval.macro";
+import { LngLatBoundsLike, Map as MapboxMap } from "mapbox-gl";
+import bbox from "@turf/bbox";
 
 const buildDate = preval`module.exports = new Date()`;
 
@@ -67,6 +69,7 @@ const colorExpression = [
 function App() {
   const [selected, setSelected] = useState<string>("5");
   const windowSize = useWindow();
+  const mapRef = useRef<MapGL>(null);
 
   const [viewport, setViewport] = useState<Viewport>({
     longitude: -75.69055,
@@ -91,6 +94,30 @@ function App() {
     selectedFilter = ["get", "night"];
   }
 
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newRef = e.target.value;
+    setSelected(newRef);
+
+    const features = data.features.filter((feature) => {
+      return feature.properties.ref === newRef &&
+        (feature.properties.detour || !feature.properties.active);
+    });
+
+    if (features.length === 0) {
+      return;
+    }
+
+    const featureBbox = bbox({
+      type: "FeatureCollection",
+      features,
+    }) as LngLatBoundsLike;
+
+    const map: MapboxMap | undefined = mapRef.current?.getMap();
+    map?.fitBounds(featureBbox, {
+      padding: 128,
+    });
+  };
+
   return (
     <Container>
       <MapGL
@@ -98,6 +125,7 @@ function App() {
         mapStyle={"mapbox://styles/mapbox/light-v10"}
         accessToken={process.env.REACT_APP_MAPBOX_KEY}
         hash={true}
+        ref={mapRef}
         onViewportChange={handleViewportChange}
         {...viewport}
         attributionControl={false}
@@ -160,7 +188,7 @@ function App() {
         />
       </MapGL>
       <Overlay>
-        <Select onChange={(e) => setSelected(e.target.value)}>
+        <Select onChange={handleChange}>
           {routes.groups.map((group) => (
             <optgroup key={group.title} label={group.title}>
               {group.routes.map((route) => (
