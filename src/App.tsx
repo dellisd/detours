@@ -31,10 +31,18 @@ const Overlay = styled.div`
   position: absolute;
   top: 0;
   left: 0;
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 `;
 
 const Select = styled.select`
   height: 64px;
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 `;
 
 const colorExpression = [
@@ -43,10 +51,16 @@ const colorExpression = [
   "#D62937",
   ["in", ["get", "ref"], ["literal", ["5", "9", "16", "18", "19", "66"]]],
   "#404040",
-  ["in", ["get", "ref"], ["literal", ["61", "63", "75"]]],
+  [
+    "in",
+    ["get", "ref"],
+    ["literal", ["61", "63", "75", "N39", "N45", "N57", "N61", "N75", "N97"]],
+  ],
   "#1A559B",
   ["in", ["get", "ref"], ["literal", ["6", "7", "10", "11", "14", "15", "85"]]],
   "#F26532",
+  ["in", ["get", "ref"], ["literal", ["400"]]],
+  "#007E88",
   "#404040",
 ];
 
@@ -64,6 +78,19 @@ function App() {
     setViewport(v);
   };
 
+  let selectedFilter =
+    selected === "all"
+      ? [
+          "any",
+          ["==", ["get", "night"], ["literal", null]],
+          ["!", ["get", "night"]],
+        ]
+      : ["==", ["get", "ref"], selected];
+
+  if (selected === "night") {
+    selectedFilter = ["get", "night"];
+  }
+
   return (
     <Container>
       <MapGL
@@ -76,11 +103,11 @@ function App() {
         attributionControl={false}
       >
         <AttributionControl
-          compact={false}
+          compact={windowSize[0] <= 600}
           position="bottom-right"
-          customAttribution={`Updated on ${new Date(
+          customAttribution={`Updated at ${new Date(
             buildDate
-          ).toLocaleDateString()}`}
+          ).toLocaleString()}`}
         />
         <NavigationControl showCompass showZoom position="bottom-right" />
         <Source id="routes" type="geojson" data={data as FeatureCollection} />
@@ -107,13 +134,7 @@ function App() {
           id="route-lines"
           type="line"
           source="routes"
-          filter={[
-            "all",
-            selected === "all"
-              ? ["literal", true]
-              : ["==", ["get", "ref"], selected],
-            ["get", "active"],
-          ]}
+          filter={["all", selectedFilter, ["get", "active"]]}
           layout={{
             "line-cap": "round",
           }}
@@ -126,13 +147,7 @@ function App() {
           id="route-lines-inactive"
           type="line"
           source="routes"
-          filter={[
-            "all",
-            selected === "all"
-              ? ["literal", true]
-              : ["==", ["get", "ref"], selected],
-            ["!", ["get", "active"]],
-          ]}
+          filter={["all", selectedFilter, ["!", ["get", "active"]]]}
           layout={{
             "line-cap": "round",
           }}
@@ -146,8 +161,14 @@ function App() {
       </MapGL>
       <Overlay>
         <Select onChange={(e) => setSelected(e.target.value)}>
-          {routes.routes.map((route) => (
-            <option value={route.ref}>{route.name}</option>
+          {routes.groups.map((group) => (
+            <optgroup key={group.title} label={group.title}>
+              {group.routes.map((route) => (
+                <option value={route.ref} key={route.ref}>
+                  {route.name}
+                </option>
+              ))}
+            </optgroup>
           ))}
         </Select>
       </Overlay>

@@ -1,24 +1,52 @@
 {
-  "routes": [
-    { "ref": "5", "name": "5 Billings Bridge — Laurier" },
-    { "ref": "6", "name": "6 South Keys — Rockcliffe" },
-    { "ref": "7", "name": "7 Carleton — St. Laurent" },
-    { "ref": "9", "name": "9 Hurdman — Rideau" },
-    { "ref": "10", "name": "10 Hurdman — Lyon" },
-    { "ref": "11", "name": "11 Bayshore — Parliament" },
-    { "ref": "14", "name": "14 Tunney's Pasture — St. Laurent" },
-    { "ref": "15", "name": "15 Blair — Gatineau" },
-    { "ref": "16", "name": "16 Westboro — Main" },
-    { "ref": "18", "name": "18 St. Laurent — Parliament" },
-    { "ref": "19", "name": "19 St. Laurent — Parliament" },
-    { "ref": "61", "name": "61 Stittsville — Tunney's Pasture / Gatineau" },
-    { "ref": "63", "name": "63 Briarbrook — Tunney's Pasture / Gatineau" },
-    { "ref": "66", "name": "66 Solandt — Tunney's Pasture / Gatineau" },
-    { "ref": "75", "name": "75 Barrhaven — Tunney's Pasture / Gatineau" },
-    { "ref": "114", "name": "114 Rideau — Carlington" },
-    { "ref": "c", "name": "Centretown Shuttle" },
-    { "ref": "1", "name": "1 Blair — Tunney's Pasture (No Detour)"},
-    { "ref": "85", "name": "85 Bayshore — Gatineau (No Detour)"},
-    { "ref": "all", "name": "All Routes" }
+  "groups": [
+    {
+      "title": "OC Transpo (Day)",
+      "routes": [
+        { "ref": "5", "name": "5 Billings Bridge — Laurier" },
+        { "ref": "6", "name": "6 South Keys — Rockcliffe" },
+        { "ref": "7", "name": "7 Carleton — St. Laurent" },
+        { "ref": "9", "name": "9 Hurdman — Rideau" },
+        { "ref": "10", "name": "10 Hurdman — Lyon" },
+        { "ref": "11", "name": "11 Bayshore — Parliament" },
+        { "ref": "14", "name": "14 Tunney's Pasture — St. Laurent" },
+        { "ref": "15", "name": "15 Blair — Gatineau" },
+        { "ref": "16", "name": "16 Westboro — Main" },
+        { "ref": "18", "name": "18 St. Laurent — Parliament" },
+        { "ref": "19", "name": "19 St. Laurent — Parliament" },
+        { "ref": "61", "name": "61 Stittsville — Tunney's Pasture / Gatineau" },
+        { "ref": "63", "name": "63 Briarbrook — Tunney's Pasture / Gatineau" },
+        { "ref": "66", "name": "66 Solandt — Tunney's Pasture / Gatineau" },
+        { "ref": "75", "name": "75 Barrhaven — Tunney's Pasture / Gatineau" },
+        { "ref": "114", "name": "114 Rideau — Carlington" },
+        { "ref": "c", "name": "Centretown Shuttle" },
+        { "ref": "1", "name": "1 Blair — Tunney's Pasture (No Detour)" },
+        { "ref": "85", "name": "85 Bayshore — Gatineau (No Detour)" }
+      ]
+    },
+    {
+      "title": "STO",
+      "routes": [
+        { "ref": "400", "name": "400 Station Labrosse — Centre Rideau" }
+      ]
+    },
+    {
+      "title": "OC Transpo (Night)",
+      "routes": [
+        { "ref": "N39", "name": "N39 Place d'Orléans — Rideau" },
+        { "ref": "N45", "name": "N45 Hospital — Rideau" },
+        { "ref": "N57", "name": "N57 Bayshore — Rideau" },
+        { "ref": "N61", "name": "N61 Terry Fox — Rideau" },
+        { "ref": "N75", "name": "N75 Barrhaven Centre — Rideau" },
+        { "ref": "N97", "name": "N97 Airport — Rideau" }
+      ]
+    },
+    {
+      "title": "Overviews",
+      "routes": [
+        { "ref": "all", "name": "All Routes (Day)" },
+        { "ref": "night", "name": "All Routes (Night)" }
+      ]
+    }
   ]
 }
