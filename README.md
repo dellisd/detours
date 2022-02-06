@@ -1,6 +1,6 @@
 # Detours
 
-This app shows the transit detours currently (as of February 5th) in place in Ottawa-Gatineau.
+This app shows the transit detours that are currently (as of February 5th) in place in Ottawa-Gatineau.
 
 # Dev Setup
 
