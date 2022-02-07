@@ -31,8 +31,6 @@ const Overlay = styled.div`
   display: flex;
   overflow: hidden;
   position: absolute;
-  top: 0;
-  left: 0;
 
   @media (max-width: 600px) {
     width: 100%;
@@ -40,7 +38,10 @@ const Overlay = styled.div`
 `;
 
 const Select = styled.select`
-  height: 64px;
+  margin: 1em;
+  border-radius: 0.5em;
+  border: solid 1px #e7e7e7;
+  padding: 0.5em;
 
   @media (max-width: 600px) {
     width: 100%;
@@ -99,8 +100,10 @@ function App() {
     setSelected(newRef);
 
     const features = data.features.filter((feature) => {
-      return feature.properties.ref === newRef &&
-        (feature.properties.detour || !feature.properties.active);
+      return (
+        feature.properties.ref === newRef &&
+        (feature.properties.detour || !feature.properties.active)
+      );
     });
 
     if (features.length === 0) {
