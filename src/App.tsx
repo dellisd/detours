@@ -67,8 +67,11 @@ const colorExpression = [
   "#404040",
 ];
 
+const params = new URLSearchParams(window.location.search);
+const defaultRef = params.get("ref");
+
 function App() {
-  const [selected, setSelected] = useState<string>("5");
+  const [selected, setSelected] = useState<string>(defaultRef ?? "5");
   const windowSize = useWindow();
   const mapRef = useRef<MapGL>(null);
 
@@ -191,7 +194,7 @@ function App() {
         />
       </MapGL>
       <Overlay>
-        <Select onChange={handleChange}>
+        <Select value={selected} onChange={handleChange}>
           {routes.groups.map((group) => (
             <optgroup key={group.title} label={group.title}>
               {group.routes.map((route) => (
