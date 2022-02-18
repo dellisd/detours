@@ -71,7 +71,7 @@ const params = new URLSearchParams(window.location.search);
 const defaultRef = params.get("ref");
 
 function App() {
-  const [selected, setSelected] = useState<string>(defaultRef ?? "5");
+  const [selected, setSelected] = useState<string>(defaultRef ?? "1");
   const windowSize = useWindow();
   const mapRef = useRef<MapGL>(null);
 
@@ -187,7 +187,7 @@ function App() {
           }}
           paint={{
             "line-width": 3,
-            "line-opacity": 0.5,
+            "line-opacity": 0.3,
             "line-dasharray": [1, 2],
             "line-color": colorExpression as any,
           }}
