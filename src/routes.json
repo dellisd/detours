@@ -21,7 +21,8 @@
         { "ref": "75", "name": "75 Barrhaven — Tunney's Pasture / Gatineau" },
         { "ref": "85", "name": "85 Bayshore — Gatineau" },
         { "ref": "114", "name": "114 Rideau — Carlington" },
-        { "ref": "c", "name": "Centretown Shuttle" }
+        { "ref": "c", "name": "Centretown Shuttle" },
+        { "ref": "d", "name": "Hurdman / Downtown Shuttle"}
       ]
     },
     {
