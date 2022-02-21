@@ -3,7 +3,6 @@
     {
       "title": "OC Transpo (Day)",
       "routes": [
-        { "ref": "1", "name": "1 Blair — Tunney's Pasture" },
         { "ref": "5", "name": "5 Billings Bridge — Laurier" },
         { "ref": "6", "name": "6 South Keys — Rockcliffe" },
         { "ref": "7", "name": "7 Carleton — St. Laurent" },
@@ -19,10 +18,11 @@
         { "ref": "63", "name": "63 Briarbrook — Tunney's Pasture / Gatineau" },
         { "ref": "66", "name": "66 Solandt — Tunney's Pasture / Gatineau" },
         { "ref": "75", "name": "75 Barrhaven — Tunney's Pasture / Gatineau" },
-        { "ref": "85", "name": "85 Bayshore — Gatineau (No Detour)" },
         { "ref": "114", "name": "114 Rideau — Carlington" },
         { "ref": "c", "name": "Centretown Shuttle" },
-        { "ref": "d", "name": "Hurdman / Downtown Shuttle"}
+        { "ref": "1", "name": "1 Blair — Tunney's Pasture (No Detour)" },
+        { "ref": "85", "name": "85 Bayshore — Gatineau (No Detour)" }
+
       ]
     },
     {
